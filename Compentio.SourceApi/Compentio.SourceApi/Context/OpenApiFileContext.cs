@@ -64,7 +64,7 @@ namespace Compentio.SourceApi.Context
             get 
             {
                 var extension = Path.GetExtension(_filePath);
-                return extension.Equals("yaml", StringComparison.OrdinalIgnoreCase) ? OpenApiFileFormat.Yaml : OpenApiFileFormat.Json;
+                return extension.Equals(".yaml", StringComparison.OrdinalIgnoreCase) ? OpenApiFileFormat.Yaml : OpenApiFileFormat.Json;
             }
 
         }            

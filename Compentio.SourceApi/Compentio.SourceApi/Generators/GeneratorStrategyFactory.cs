@@ -11,8 +11,8 @@ namespace Compentio.SourceApi.Generators
     {
         private readonly static Dictionary<OpenApiFileFormat, IGeneratorStrategy> _strategies = new()
         {
-            { OpenApiFileFormat.Yaml, new JsonGeneratorStrategy()},
-            { OpenApiFileFormat.Json, new YamlGeneratorStrategy() }
+            { OpenApiFileFormat.Json, new JsonGeneratorStrategy()},
+            { OpenApiFileFormat.Yaml, new YamlGeneratorStrategy() }
         };
 
         /// <summary>

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--<PackageReference Include="Compentio.SourceApi" Version="0.0.13" />-->
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
@@ -15,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Compentio.SourceApi\Compentio.SourceApi.csproj" OutputItemType="Analyzer" />
+    <ProjectReference Include="..\Compentio.SourceApi\Compentio.SourceApi.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true"/>
   </ItemGroup>
 
 </Project>
