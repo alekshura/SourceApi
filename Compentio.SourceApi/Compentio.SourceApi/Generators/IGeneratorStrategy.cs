@@ -26,14 +26,16 @@ namespace Compentio.SourceApi.Generators
                 ClassName = context.ClassName,
                 CSharpGeneratorSettings =
                 {
-                    Namespace = context.Namespace, 
-                    //SchemaType = NJsonSchema.SchemaType.OpenApi3
+                    Namespace = context.Namespace,
+                    SchemaType = NJsonSchema.SchemaType.OpenApi3,
+                    GenerateDefaultValues = true,
+                    GenerateDataAnnotations = false
                 },
                 ControllerStyle = NSwag.CodeGeneration.CSharp.Models.CSharpControllerStyle.Abstract,
                 ControllerTarget = NSwag.CodeGeneration.CSharp.Models.CSharpControllerTarget.AspNetCore,
                 GenerateOptionalParameters = true,
-                RouteNamingStrategy = NSwag.CodeGeneration.CSharp.Models.CSharpControllerRouteNamingStrategy.None,
-                
+                GenerateModelValidationAttributes = true,
+                RouteNamingStrategy = NSwag.CodeGeneration.CSharp.Models.CSharpControllerRouteNamingStrategy.None
 
             };
 

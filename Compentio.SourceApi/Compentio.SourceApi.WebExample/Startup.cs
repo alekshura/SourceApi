@@ -1,16 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Compentio.SourceApi.WebExample
 {
@@ -28,9 +20,16 @@ namespace Compentio.SourceApi.WebExample
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+
+            services.AddOpenApiDocument(configure =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Compentio.SourceApi.WebExample", Version = "v1" });
+                configure.Title = "Open Api Pets documentation";
+                configure.Description = "This is example description";
+                configure.DocumentName = "Pets controller";
+                configure.GenerateExamples = true;
+                configure.UseControllerSummaryAsTagDescription = true;
+                configure.FlattenInheritanceHierarchy = true;
+                configure.Version = "v1.0";
             });
         }
 
@@ -40,8 +39,8 @@ namespace Compentio.SourceApi.WebExample
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Compentio.SourceApi.WebExample v1"));
+                app.UseOpenApi();
+                app.UseSwaggerUi3();
             }
 
             app.UseHttpsRedirection();
