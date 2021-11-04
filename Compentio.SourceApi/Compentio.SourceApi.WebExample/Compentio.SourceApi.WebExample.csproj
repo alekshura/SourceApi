@@ -10,13 +10,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="OpenApi\contract.yaml">
+    <AdditionalFiles Include="Controllers\Pets.yaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </AdditionalFiles>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Compentio.SourceApi\Compentio.SourceApi.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true"/>
+    <ProjectReference Include="..\Compentio.SourceApi\Compentio.SourceApi.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
   </ItemGroup>
 
 </Project>
