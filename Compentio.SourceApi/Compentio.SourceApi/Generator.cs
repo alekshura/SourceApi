@@ -11,6 +11,7 @@ namespace Compentio.SourceApi
     [Generator]
     public class Generator : ISourceGenerator
     {
+        /// <inheritdoc />
         public void Execute(GeneratorExecutionContext context)
         {
             Trace.WriteLine($"Start generating your base controllers.");
@@ -36,6 +37,7 @@ namespace Compentio.SourceApi
             Trace.WriteLine($"Code generating ended succesfully.");
         }
 
+        /// <inheritdoc />
         public void Initialize(GeneratorInitializationContext context)
         {
 //#if DEBUG

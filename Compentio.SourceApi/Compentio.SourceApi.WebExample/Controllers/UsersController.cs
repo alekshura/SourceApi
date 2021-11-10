@@ -9,52 +9,52 @@ namespace Compentio.SourceApi.WebExample.Controllers
 {
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
-    public class PetsController : PetsControllerBase
+    public class UsersController : UsersControllerBase
     {
         /// <inheritdoc />
-        public override Task<IActionResult> AddPet([BindRequired, FromBody] Pet body)
+        public override Task<IActionResult> CreateUser([BindRequired, FromBody] User body)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public override Task<IActionResult> DeletePet([BindRequired] long petId, [FromHeader] string api_key = null)
+        public override Task<IActionResult> CreateUsersWithArrayInput([BindRequired, FromBody] IEnumerable<User> body)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public override Task<ActionResult<ICollection<Pet>>> FindPetsByStatus([BindRequired, FromQuery] IEnumerable<Anonymous> status)
+        public override Task<IActionResult> CreateUsersWithListInput([BindRequired, FromBody] IEnumerable<User> body)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public override Task<ActionResult<ICollection<Pet>>> FindPetsByTags([BindRequired, FromQuery] IEnumerable<string> tags)
+        public override Task<IActionResult> DeleteUser([BindRequired] string username)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public override Task<ActionResult<Pet>> GetPetById([BindRequired] long petId)
+        public override Task<ActionResult<User>> GetUserByName([BindRequired] string username)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public override Task<IActionResult> UpdatePet([BindRequired, FromBody] Pet body)
+        public override Task<ActionResult<string>> LoginUser([BindRequired, FromQuery] string username, [BindRequired, FromQuery] string password)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public override Task<IActionResult> UpdatePetWithForm([BindRequired] long petId, [FromBody] Body body = null)
+        public override Task<IActionResult> LogoutUser()
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public override Task<ActionResult<ApiResponse>> UploadFile([BindRequired] long petId, string additionalMetadata = null, FileParameter file = null)
+        public override Task<IActionResult> UpdateUser([BindRequired] string username, [BindRequired, FromBody] User body)
         {
             throw new NotImplementedException();
         }
