@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace Compentio.SourceApi.Generators
 {
     /// <summary>
-    /// Open Api code generation strategy. 
-    /// Json or Yaml Opean Api schema is used for code generation. 
+    /// Open API code generation strategy. 
+    /// Json or Yaml Opean API schema is used for code generation. 
     /// </summary>
     interface IGeneratorStrategy
     {
         /// <summary>
-        /// Generates base controller with routes and Dto's and documentation
+        /// Generates base controller with routes and DTO's and documentation
         /// </summary>
-        /// <param name="context">Open Api file</param>
+        /// <param name="context">Open API file</param>
         /// <returns>Generated and formatted code with execution result. See: <see cref="IResult"/></returns>
         Task<IResult> GenerateCode(IOpenApiFileContext context);
     }
@@ -58,9 +58,9 @@ namespace Compentio.SourceApi.Generators
         }
 
         /// <summary>
-        /// Retreives OpenApi document for json or yaml definition
+        /// Retreives Open API document for json or yaml schema definition
         /// </summary>
-        /// <param name="filePath">Path to the file with OpenApi document</param>
+        /// <param name="filePath">Path to the file with Open API document</param>
         /// <returns></returns>
         protected abstract Task<OpenApiDocument> GetOpenApiDocumentAsync(string filePath);
     }

@@ -4,7 +4,7 @@ using System;
 namespace Compentio.SourceApi.Diagnostics
 {
     /// <summary>
-    /// <see cref="Microsoft.CodeAnalysis.DiagnosticInfo"/> stores information about problems or warnings during code generation.
+    /// <see cref="DiagnosticInfo"/> stores information about problems or warnings during code generation.
     /// It is used to report it at the end of the process.
     /// </summary>
     internal class DiagnosticInfo

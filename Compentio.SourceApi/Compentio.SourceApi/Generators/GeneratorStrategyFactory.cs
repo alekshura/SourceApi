@@ -1,11 +1,10 @@
 ﻿using Compentio.SourceApi.Context;
-using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
 
 namespace Compentio.SourceApi.Generators
 {
     /// <summary>
-    /// Code generator strategy factory that returns proper processod that depends on mapper definition type: abstract class or interface
+    /// Code generator strategy factory that returns proper processor for yaml or json schema definitions
     /// </summary>
     internal static class GeneratorStrategyFactory
     {
@@ -16,9 +15,9 @@ namespace Compentio.SourceApi.Generators
         };
 
         /// <summary>
-        /// returns appropriate generator strategy based on mapper type kind <see cref="TypeKind"/>
+        /// Returns appropriate generator strategy based on open API schema type: json or yaml: <see cref="OpenApiFileFormat"/>
         /// </summary>
-        /// <param name="mapperMetadata"></param>
+        /// <param name="context">Open API file info. File extension used to return appropriate strategy: <see cref="OpenApiFileFormat"/></param>
         /// <returns></returns>
         internal static IGeneratorStrategy GetStrategy(IOpenApiFileContext context)
         {

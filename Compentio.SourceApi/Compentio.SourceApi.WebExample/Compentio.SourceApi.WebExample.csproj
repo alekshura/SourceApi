@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="Controllers\Pets.yaml">
+    <CompilerVisibleProperty Include="SourceApi_GeneratorNamespace" />
+    <CompilerVisibleProperty Include="SourceApi_GenerateOnlyContracts" />
+    <AdditionalFiles Include="Controllers\Pets.yaml" SourceApi_GeneratorNamespace="Controllers" SourceApi_GenerateOnlyContracts="false">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </AdditionalFiles>
   </ItemGroup>

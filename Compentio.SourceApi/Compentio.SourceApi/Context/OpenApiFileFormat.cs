@@ -1,7 +1,7 @@
 ﻿namespace Compentio.SourceApi.Context
 {
     /// <summary>
-    /// File format for Open Api definition 
+    /// File format for Open API definition 
     /// </summary>
     enum OpenApiFileFormat
     {

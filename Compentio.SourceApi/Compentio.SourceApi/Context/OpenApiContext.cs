@@ -13,34 +13,47 @@ namespace Compentio.SourceApi.Context
         /// Collection of Open API definitions files
         /// </summary>
         IEnumerable<IOpenApiFileContext> Context { get; }
+
+        /// <summary>
+        /// Global configuration for all Open Api files in context
+        /// </summary>
+        IConfigurationContext Configuration { get; }
     }
 
     /// <inheritdoc />
     class OpenApiContext : IOpenApiContext
     {
         private readonly GeneratorExecutionContext _generatorExecutionContext;
-        private readonly IList<IOpenApiFileContext> _configFilesContext;       
+        private readonly IList<IOpenApiFileContext> _openApiFilesContext;
+        private readonly IConfigurationContext _configurationContext;
 
         public static IOpenApiContext CreateFromExecutionContext(GeneratorExecutionContext generatorExecutionContext) => new OpenApiContext(generatorExecutionContext);
 
         private OpenApiContext(GeneratorExecutionContext generatorExecutionContext)
         {
             _generatorExecutionContext = generatorExecutionContext;
-            _configFilesContext = new List<IOpenApiFileContext>();
-            LoadOpenApiFiles(_configFilesContext);
+            _openApiFilesContext = new List<IOpenApiFileContext>();
+            _configurationContext = new GlobalConfigurationContext(_generatorExecutionContext.AnalyzerConfigOptions.GlobalOptions);
+            LoadOpenApiFiles(_openApiFilesContext);
         }
 
         /// <inheritdoc />
-        public IEnumerable<IOpenApiFileContext> Context => _configFilesContext;
+        public IEnumerable<IOpenApiFileContext> Context => _openApiFilesContext;
+
+        /// <inheritdoc />
+        public IConfigurationContext Configuration => _configurationContext;
 
         private void LoadOpenApiFiles(IList<IOpenApiFileContext> openApiFilesContext)
-        {
-            foreach (var configFile in _generatorExecutionContext.AdditionalFiles.Where(file => file.Path.EndsWith(".json") || file.Path.EndsWith(".yaml")))
+        {           
+            foreach (var file in _generatorExecutionContext.AdditionalFiles.Where(file => file.Path.EndsWith(".json") || file.Path.EndsWith(".yaml")))
             {
-                var content = configFile.GetText()?.ToString();
+                var content = file.GetText()?.ToString();
                 if (!string.IsNullOrEmpty(content))
                 {
-                    var fileContext = new OpenApiFileContext(configFile.Path, _generatorExecutionContext.Compilation?.AssemblyName);
+                    var fileContext = new OpenApiFileContext(file.Path, 
+                        _generatorExecutionContext.Compilation?.AssemblyName, 
+                        _generatorExecutionContext.AnalyzerConfigOptions.GetOptions(file));
+
                     openApiFilesContext.Add(fileContext);                    
                 }
             }

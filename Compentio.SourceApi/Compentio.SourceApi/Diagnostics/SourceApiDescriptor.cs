@@ -3,7 +3,7 @@
 namespace Compentio.SourceApi.Diagnostics
 {
     /// <summary>
-    /// Source Api generator diagnostics descriptors
+    /// Source API generator diagnostics descriptors
     /// </summary>
     class SourceApiDescriptor
     {

@@ -7,7 +7,7 @@ using System;
 namespace Compentio.SourceApi.Generators
 {
     /// <summary>
-    /// Result of api code generation
+    /// Result of API code generation
     /// </summary>
     interface IResult
     {
@@ -16,7 +16,7 @@ namespace Compentio.SourceApi.Generators
         /// </summary>
         string GeneratedCode { get; }
         /// <summary>
-        /// Success flag of code generation
+        /// Success flag of code generation process
         /// </summary>
         bool IsSuccess { get; }
         /// <summary>

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.Diagnostics;
+using System;
 using System.IO;
 using System.Linq;
 
 namespace Compentio.SourceApi.Context
 {
     /// <summary>
-    /// Contains one file OpenApi information
+    /// Contains one file Open API information
     /// </summary>
     interface IOpenApiFileContext
     {
@@ -19,13 +20,19 @@ namespace Compentio.SourceApi.Context
         /// </summary>
         string ClassName { get; }
         /// <summary>
-        /// Namespace of generated class. It is concatenation of main application namespaca and directories of configuration files.
+        /// Namespace of generated class. It is concatenation of main application namespace and directories of open api files locations.
+        /// TODO
         /// </summary>
         string Namespace { get; }
         /// <summary>
         /// File format. For Open API definition used yaml or json format
         /// </summary>
         OpenApiFileFormat FileFormat { get; }
+        /// <summary>
+        /// Configuration for single open API file gnerator processing
+        /// </summary>
+        IConfigurationContext Configuration { get; }
+
     }
 
     /// <inheritdoc />
@@ -33,11 +40,13 @@ namespace Compentio.SourceApi.Context
     {
         private readonly string _filePath;
         private readonly string _assemblyName;
+        private readonly AnalyzerConfigOptions _options;
 
-        public OpenApiFileContext(string filePath, string assemblyName)
+        public OpenApiFileContext(string filePath, string assemblyName, AnalyzerConfigOptions options)
         {
             _filePath = filePath;
             _assemblyName = assemblyName;
+            _options = options;
         }
 
         /// <inheritdoc />
@@ -75,6 +84,9 @@ namespace Compentio.SourceApi.Context
                 return extension.Equals(".yaml", StringComparison.OrdinalIgnoreCase) ? OpenApiFileFormat.Yaml : OpenApiFileFormat.Json;
             }
 
-        }            
+        }
+
+        /// <inheritdoc />
+        public IConfigurationContext Configuration => new FileConfigurationContext(_options);
     }
 }
