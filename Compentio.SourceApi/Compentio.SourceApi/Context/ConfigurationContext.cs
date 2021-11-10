@@ -2,64 +2,116 @@
 
 namespace Compentio.SourceApi.Context
 {
-
+    /// <summary>
+    /// Configuration for Open API generators
+    /// </summary>
     interface IConfigurationContext
     {
+        /// <summary>
+        /// Controllers and DTO's namespace
+        /// </summary>
         public string Namespace { get; }
+        /// <summary>
+        /// Indicates when to generate only DTO's
+        /// </summary>
         public bool GenerateOnlyContracts { get; }
     }
 
-    class GlobalConfigurationContext : IConfigurationContext
+    /// <inheritdoc />
+    abstract class ConfigurationContext : IConfigurationContext
     {
-        private readonly AnalyzerConfigOptions _options;
+        protected readonly AnalyzerConfigOptions _options;
+        protected const string BuldProperty = "build_property";
+        protected const string BuldMetadata = "build_metadata";
+        protected const string Name = "SourceApi";
+        protected const string NamespaceParameterName = "GeneratorNamespace";
+        protected const string GenerateOnlyContractsParameterName = "GenerateOnlyContracts";
 
-        public GlobalConfigurationContext(AnalyzerConfigOptions options)
+        public ConfigurationContext(AnalyzerConfigOptions options)
         {
             _options = options;
         }
-        public string Namespace
-        { 
-            get
+
+        /// <inheritdoc />
+        public virtual string Namespace { get; }
+
+        /// <inheritdoc />
+        public virtual bool GenerateOnlyContracts { get; }
+
+        protected bool GetBoolParameter(string key)
+        {
+            if (_options.TryGetValue(key, out var stringValue))
             {
-                _options.TryGetValue("build_property.SourceApi_GeneratorNamespace", out var namespaceName);
-                return namespaceName;
+                bool.TryParse(stringValue, out var boolValue);
+                return boolValue;
             }
+
+            return false;
         }
 
-        public bool GenerateOnlyContracts
+        protected string GetStringParameter(string key)
         {
-            get
+            if (_options.TryGetValue(key, out var stringValue))
             {
-                _options.TryGetValue("build_property.SourceApi_GenerateOnlyContracts", out var onlyContractsString);
-                bool.TryParse(onlyContractsString, out var onlyContracts);                
-                return onlyContracts;
+                return stringValue;
             }
+
+            return string.Empty;
         }
     }
 
-    class FileConfigurationContext : IConfigurationContext
+    /// <inheritdoc />
+    class GlobalConfigurationContext : ConfigurationContext
     {
-        private readonly AnalyzerConfigOptions _options;
-
-        public FileConfigurationContext(AnalyzerConfigOptions options)
+        public GlobalConfigurationContext(AnalyzerConfigOptions options) : base(options)
         {
-            _options = options;
         }
-        public string Namespace
+
+        /// <inheritdoc />
+        public override string Namespace => GetStringParameter($"{BuldProperty}.{Name}_{NamespaceParameterName}");
+        
+        /// <inheritdoc />
+        public override bool GenerateOnlyContracts => GetBoolParameter($"{BuldProperty}.{Name}_{GenerateOnlyContractsParameterName}");
+    }
+
+    class FileConfigurationContext : ConfigurationContext
+    {
+        private readonly IConfigurationContext _globalConfiguration;
+
+        public FileConfigurationContext(AnalyzerConfigOptions options, IConfigurationContext globalConfiguration) 
+            : base(options)
+        {
+            _globalConfiguration = globalConfiguration;
+        }
+
+        /// <inheritdoc />
+        public override string Namespace
         {
             get
             {
-                _options.TryGetValue("build_metadata.AdditionalFiles.SourceApi_GeneratorNamespace", out var namespaceName);
+                var namespaceName = GetStringParameter($"{BuldMetadata}.AdditionalFiles.{Name}_{NamespaceParameterName}");
+
+                if (string.IsNullOrWhiteSpace(namespaceName))
+                {
+                    return _globalConfiguration.Namespace;
+                }
+
                 return namespaceName;
             }
         }
 
-        public bool GenerateOnlyContracts
+        /// <inheritdoc />
+        public override bool GenerateOnlyContracts
         {
             get
             {
-                _options.TryGetValue("build_metadata.AdditionalFiles.SourceApi_GenerateOnlyContracts", out var onlyContractsString);
-                bool.TryParse(onlyContractsString, out var onlyContracts);
+                var onlyContracts = GetBoolParameter($"{BuldMetadata}.AdditionalFiles.{Name}_{GenerateOnlyContractsParameterName}");
+                
+                if (!onlyContracts)
+                {
+                    return _globalConfiguration.GenerateOnlyContracts;
+                }
+                
                 return onlyContracts;
             }
         }

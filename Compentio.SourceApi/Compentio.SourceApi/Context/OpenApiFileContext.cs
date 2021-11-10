@@ -20,8 +20,8 @@ namespace Compentio.SourceApi.Context
         /// </summary>
         string ClassName { get; }
         /// <summary>
-        /// Namespace of generated class. It is concatenation of main application namespace and directories of open api files locations.
-        /// TODO
+        /// Namespace of generated class. If configuration for in *.cproj file is defined it is used otherwise the 
+        /// concatenation of main application namespace and directories of open api files locations.
         /// </summary>
         string Namespace { get; }
         /// <summary>
@@ -32,7 +32,6 @@ namespace Compentio.SourceApi.Context
         /// Configuration for single open API file gnerator processing
         /// </summary>
         IConfigurationContext Configuration { get; }
-
     }
 
     /// <inheritdoc />
@@ -41,12 +40,14 @@ namespace Compentio.SourceApi.Context
         private readonly string _filePath;
         private readonly string _assemblyName;
         private readonly AnalyzerConfigOptions _options;
+        private readonly IConfigurationContext _globalConfiguration;
 
-        public OpenApiFileContext(string filePath, string assemblyName, AnalyzerConfigOptions options)
+        public OpenApiFileContext(string filePath, string assemblyName, AnalyzerConfigOptions options, IConfigurationContext globalConfiguration)
         {
             _filePath = filePath;
             _assemblyName = assemblyName;
             _options = options;
+            _globalConfiguration = globalConfiguration;
         }
 
         /// <inheritdoc />
@@ -63,6 +64,11 @@ namespace Compentio.SourceApi.Context
         {
             get
             {
+                if (!string.IsNullOrEmpty(Configuration.Namespace))
+                {
+                    return Configuration.Namespace;
+                }
+
                 var assemlyRootDirectory = _filePath.Split(new string[] { _assemblyName }, StringSplitOptions.RemoveEmptyEntries)[1];
                 var namespaceName = string.Empty;
                 foreach (var item in assemlyRootDirectory.Split(Path.DirectorySeparatorChar).Where(item => !string.IsNullOrWhiteSpace(item)))
@@ -83,10 +89,9 @@ namespace Compentio.SourceApi.Context
                 var extension = Path.GetExtension(_filePath);
                 return extension.Equals(".yaml", StringComparison.OrdinalIgnoreCase) ? OpenApiFileFormat.Yaml : OpenApiFileFormat.Json;
             }
-
         }
 
         /// <inheritdoc />
-        public IConfigurationContext Configuration => new FileConfigurationContext(_options);
+        public IConfigurationContext Configuration => new FileConfigurationContext(_options, _globalConfiguration);
     }
 }

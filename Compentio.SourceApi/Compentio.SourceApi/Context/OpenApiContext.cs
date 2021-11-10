@@ -52,7 +52,8 @@ namespace Compentio.SourceApi.Context
                 {
                     var fileContext = new OpenApiFileContext(file.Path, 
                         _generatorExecutionContext.Compilation?.AssemblyName, 
-                        _generatorExecutionContext.AnalyzerConfigOptions.GetOptions(file));
+                        _generatorExecutionContext.AnalyzerConfigOptions.GetOptions(file),
+                        _configurationContext);
 
                     openApiFilesContext.Add(fileContext);                    
                 }
