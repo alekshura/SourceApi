@@ -28,6 +28,7 @@ namespace Compentio.SourceApi.Context
         OpenApiFileFormat FileFormat { get; }
     }
 
+    /// <inheritdoc />
     class OpenApiFileContext : IOpenApiFileContext
     {
         private readonly string _filePath;
@@ -39,10 +40,16 @@ namespace Compentio.SourceApi.Context
             _assemblyName = assemblyName;
         }
 
+        /// <inheritdoc />
         public string FilePath => _filePath;
+
+        /// <inheritdoc />
         public string ClassName => Path.GetFileNameWithoutExtension(_filePath);
+
+        /// <inheritdoc />
         public string FileName => $"{ClassName}.cs";
 
+        /// <inheritdoc />
         public string Namespace
         {
             get
@@ -59,6 +66,7 @@ namespace Compentio.SourceApi.Context
             }
         }
 
+        /// <inheritdoc />
         public OpenApiFileFormat FileFormat
         {
             get 

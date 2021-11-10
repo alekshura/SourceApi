@@ -1,7 +1,6 @@
 ﻿using Compentio.SourceApi.Context;
 using Compentio.SourceApi.Generators;
 using Microsoft.CodeAnalysis;
-using System;
 using System.Diagnostics;
 
 namespace Compentio.SourceApi
@@ -14,16 +13,27 @@ namespace Compentio.SourceApi
     {
         public void Execute(GeneratorExecutionContext context)
         {
-            Trace.WriteLine($"Start code generation.");
+            Trace.WriteLine($"Start generating your base controllers.");
 
             var openApiContext = OpenApiContext.CreateFromExecutionContext(context);
 
             foreach (var openApiFileContext in openApiContext.Context)
             {
                 var generatorStrategy = GeneratorStrategyFactory.GetStrategy(openApiFileContext);
-                var code = generatorStrategy.GenerateCode(openApiFileContext).Result;
-                context.AddSource(openApiFileContext.FileName, code);
+                var result = generatorStrategy.GenerateCode(openApiFileContext).Result;
+
+                if (result.IsSuccess)
+                {
+                    context.AddSource(openApiFileContext.FileName, result.GeneratedCode);
+                }
+                else
+                {
+                    Trace.TraceError(result.Diagnostic.Message);
+                    context.ReportDiagnostic(Diagnostic.Create(result.Diagnostic.DiagnosticDescriptor, null, result.Diagnostic.Message));
+                }                
             }
+
+            Trace.WriteLine($"Code generating ended succesfully.");
         }
 
         public void Initialize(GeneratorInitializationContext context)

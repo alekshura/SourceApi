@@ -15,6 +15,7 @@ namespace Compentio.SourceApi.Context
         IEnumerable<IOpenApiFileContext> Context { get; }
     }
 
+    /// <inheritdoc />
     class OpenApiContext : IOpenApiContext
     {
         private readonly GeneratorExecutionContext _generatorExecutionContext;
@@ -29,6 +30,7 @@ namespace Compentio.SourceApi.Context
             LoadOpenApiFiles(_configFilesContext);
         }
 
+        /// <inheritdoc />
         public IEnumerable<IOpenApiFileContext> Context => _configFilesContext;
 
         private void LoadOpenApiFiles(IList<IOpenApiFileContext> openApiFilesContext)

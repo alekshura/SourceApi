@@ -64,12 +64,8 @@
       <TargetPathWithTargetPlatformMoniker Include="$(PkgNewtonsoft_Json)\lib\netstandard1.0\*.dll" IncludeRuntimeDependency="true" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgYamlDotNet)\lib\netstandard1.3\*.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgNamotion_Reflection)\lib\netstandard2.0\*.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="$(PkgDotLiquid)\lib\netstandard1.3\*.dll" IncludeRuntimeDependency="false"/>
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgDotLiquid)\lib\netstandard1.3\*.dll" IncludeRuntimeDependency="false" />
     </ItemGroup>
   </Target>
-
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
 
 </Project>
