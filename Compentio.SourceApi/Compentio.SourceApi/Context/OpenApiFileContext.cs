@@ -87,11 +87,16 @@ namespace Compentio.SourceApi.Context
             get 
             {
                 var extension = Path.GetExtension(_filePath);
-                return extension.Equals(".yaml", StringComparison.OrdinalIgnoreCase) ? OpenApiFileFormat.Yaml : OpenApiFileFormat.Json;
+                return IsYaml(extension) ? OpenApiFileFormat.Yaml : OpenApiFileFormat.Json;
             }
         }
 
         /// <inheritdoc />
         public IConfigurationContext Configuration => new FileConfigurationContext(_options, _globalConfiguration);
+
+        private bool IsYaml(string fileExtension)
+        {
+            return fileExtension.Equals(".yaml", StringComparison.OrdinalIgnoreCase) || fileExtension.Equals(".yml", StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

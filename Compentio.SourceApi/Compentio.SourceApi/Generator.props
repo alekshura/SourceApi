@@ -1,0 +1,8 @@
+﻿<Project>
+    <ItemGroup>
+        <CompilerVisibleProperty Include="SourceApi_GeneratorNamespace" />
+        <CompilerVisibleProperty Include="SourceApi_GenerateOnlyContracts" />
+        <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="SourceApi_GeneratorNamespace" />
+        <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="SourceApi_GenerateOnlyContracts" />
+    </ItemGroup>
+</Project>

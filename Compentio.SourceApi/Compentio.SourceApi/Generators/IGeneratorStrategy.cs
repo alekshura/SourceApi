@@ -2,6 +2,7 @@
 using NSwag;
 using NSwag.CodeGeneration.CSharp;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Compentio.SourceApi.Generators
@@ -41,7 +42,8 @@ namespace Compentio.SourceApi.Generators
                 GenerateOptionalParameters = true,
                 GenerateModelValidationAttributes = true,
                 RouteNamingStrategy = NSwag.CodeGeneration.CSharp.Models.CSharpControllerRouteNamingStrategy.None, 
-                UseActionResultType = true
+                UseActionResultType = true,
+                //GenerateClientInterfaces = context.Configuration.GenerateOnlyContracts
             };
 
             try

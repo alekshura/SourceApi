@@ -45,7 +45,7 @@ namespace Compentio.SourceApi.Context
 
         private void LoadOpenApiFiles(IList<IOpenApiFileContext> openApiFilesContext)
         {           
-            foreach (var file in _generatorExecutionContext.AdditionalFiles.Where(file => file.Path.EndsWith(".json") || file.Path.EndsWith(".yaml")))
+            foreach (var file in _generatorExecutionContext.AdditionalFiles.Where(file => IsOpenApiSchemeExtension(file.Path)))
             {
                 var content = file.GetText()?.ToString();
                 if (!string.IsNullOrEmpty(content))
@@ -58,6 +58,13 @@ namespace Compentio.SourceApi.Context
                     openApiFilesContext.Add(fileContext);                    
                 }
             }
+        }
+
+        private bool IsOpenApiSchemeExtension(string filePath)
+        {
+            return filePath.EndsWith(".json", System.StringComparison.InvariantCultureIgnoreCase) ||
+                filePath.EndsWith(".yaml", System.StringComparison.InvariantCultureIgnoreCase) ||
+                filePath.EndsWith(".yml", System.StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

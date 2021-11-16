@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Controllers\Store.yaml" />
-    <None Remove="Controllers\Users.yaml" />
+    <AdditionalFiles Include="OpenApi\Pets.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.Controllers" />
+    <AdditionalFiles Include="OpenApi\Store.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.Controllers"/>
+    <AdditionalFiles Include="OpenApi\Users.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.Controllers"/>
   </ItemGroup>
+
 
   <ItemGroup>
     <!--<PackageReference Include="Compentio.SourceApi" Version="0.0.13" />-->
@@ -17,25 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <CompilerVisibleProperty Include="SourceApi_GeneratorNamespace" />
-    <CompilerVisibleProperty Include="SourceApi_GenerateOnlyContracts" />
-    <AdditionalFiles Include="OpenApi\Users.yaml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <SourceApi_GenerateOnlyContracts>false</SourceApi_GenerateOnlyContracts>
-      <SourceApi_GeneratorNamespace>Controllers</SourceApi_GeneratorNamespace>
-    </AdditionalFiles>
-    <AdditionalFiles Include="OpenApi\Store.yaml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <SourceApi_GenerateOnlyContracts>false</SourceApi_GenerateOnlyContracts>
-      <SourceApi_GeneratorNamespace>Controllers</SourceApi_GeneratorNamespace>
-    </AdditionalFiles>
-    <AdditionalFiles Include="OpenApi\Pets.yaml" SourceApi_GeneratorNamespace="Controllers" SourceApi_GenerateOnlyContracts="false">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AdditionalFiles>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Compentio.SourceApi\Compentio.SourceApi.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
   </ItemGroup>
+
+  <Import Project="..\Compentio.SourceApi\Generator.props" />
 
 </Project>
