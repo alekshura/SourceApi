@@ -4,10 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
+    <SourceApi_GeneratorNamespace>Compentio.SourceApi.WebExample.Controllers</SourceApi_GeneratorNamespace>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <AdditionalFiles Include="OpenApi\Pets.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.Controllers" />
+    <AdditionalFiles Include="OpenApi\Pets.yaml"/>
     <AdditionalFiles Include="OpenApi\Store.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.Controllers"/>
     <AdditionalFiles Include="OpenApi\Users.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.Controllers"/>
   </ItemGroup>

@@ -35,7 +35,7 @@
     <PackageReference Include="DotLiquid" Version="2.0.385" PrivateAssets="all" GeneratePathProperty="true" />
     
 
-    <!--<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgNSwag_Core)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgNSwag_Core_Yaml)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgNSwag_CodeGeneration_CSharp)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
@@ -46,7 +46,7 @@
     <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgYamlDotNet)\lib\netstandard2.1\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgNamotion_Reflection)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="Generator.props" Pack="true" PackagePath="build" Visible="false" />-->
+    <None Include="Generator.props" Pack="true" PackagePath="build" Visible="false" />
   </ItemGroup>
   
    <PropertyGroup>
