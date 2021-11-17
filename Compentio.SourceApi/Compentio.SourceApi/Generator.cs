@@ -40,12 +40,12 @@ namespace Compentio.SourceApi
         /// <inheritdoc />
         public void Initialize(GeneratorInitializationContext context)
         {
-#if DEBUG
-            if (!Debugger.IsAttached)
-            {
-                Debugger.Launch();
-            }
-#endif
+//#if DEBUG
+//            if (!Debugger.IsAttached)
+//            {
+//                Debugger.Launch();
+//            }
+//#endif
             Trace.WriteLine($"'{typeof(Generator).FullName}' initalized.");
         }
     }

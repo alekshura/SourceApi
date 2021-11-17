@@ -5,6 +5,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <SourceApi_GeneratorNamespace>Compentio.SourceApi.WebExample.Controllers</SourceApi_GeneratorNamespace>
+    <SourceApi_GenerateOnlyContracts>false</SourceApi_GenerateOnlyContracts>
   </PropertyGroup>
   
   <ItemGroup>
