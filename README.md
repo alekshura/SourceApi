@@ -52,12 +52,16 @@ In basic and most simple scenario: add Open API definition file or files (`*.jso
 >   </AdditionalFiles>
 > </ItemGroup> 
 
-<img src="/Compentio.Assets/AdditionalFile.png" align="center" width="100%">
+or in file properties in Visual Studio:
+
+<img src="/Compentio.Assets/AdditionalFile.png" align="center" width="95%">
 
 You will see generated abstract controllers in 
 > Dependencies -> Analyzers -> Compentio.SourceApi > Compentio.SourceApi.Generator.
 
-<img src="/Compentio.Assets/GeneratedFiles.png" align="center" width="80%">
+<p align="center">
+  <img src="/Compentio.Assets/GeneratedFiles.png" align="center" width="50%">
+</p>
 
 >! For now use one Open API file per controller. [Open API Tags](https://swagger.io/docs/specification/grouping-operations-with-tags/) are not supported.
 
