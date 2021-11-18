@@ -50,7 +50,7 @@ In basic and most simple scenario: add Open API definition file or files (`*.jso
 You will see generated abstract controllers in 
 > Dependencies -> Analyzers -> Compentio.SourceApi > Compentio.SourceApi.Generator.
 
-<img src="/Compentio.Assets/GeneratedFiles.png" align="center" width="100%">
+<img src="/Compentio.Assets/GeneratedFiles.png" align="center" width="60%">
 
 
 ## Interface mapping
