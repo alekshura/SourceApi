@@ -22,7 +22,7 @@ during design time in Visual Studio IDE it generates abstract base Controllers c
 It is based on [Source Generators Additional File Transaformation](https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md#additional-file-transformation) feature
 where it is possible to be able to transform an external non-C# file into an equivalent C# representation.
 
-Rico Suter [NSwag](https://github.com/RicoSuter/NSwag) is used underhood:
+Rico Suter's [NSwag](https://github.com/RicoSuter/NSwag) is used underhood:
 - [CSharpControllerGenerator](https://github.com/RicoSuter/NSwag/wiki/CSharpControllerGenerator) is used for abstract base controllers code generation
 - [CSharpClientGenerator](https://github.com/RicoSuter/NSwag/wiki/CSharpClientGenerator) used for DTO's only code generation mode. 
 
