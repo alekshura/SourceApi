@@ -59,6 +59,8 @@ You will see generated abstract controllers in
 
 <img src="/Compentio.Assets/GeneratedFiles.png" align="center" width="80%">
 
+>! For now use one Open API file per controller. [Open API Tags](https://swagger.io/docs/specification/grouping-operations-with-tags/) are not supported.
+
 Now you can use these base controllers during implementation of you Web API. The DTO's are generated, routes are defined, documentation for the API methods also used from 
 Open API definitions:
 
@@ -194,4 +196,40 @@ namespace Compentio.SourceApi.WebExample.Controllers
 
 # Configuration
 
+To customize the generated code and override defaults `SourceApi` 
+[consumes MSBuild properties and metadata](https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md#consume-msbuild-properties-and-metadata).
+
+Two configuration properies you can dafine in `*.cproj` file to customize SourceApi generator:
+- SourceApi_GeneratorNamespace - you can define namespace for generated classes
+- SourceApi_GenerateOnlyContracts - you can generate only DTO's without Controller base classes.
+
+>In a case if properties are not added, default values are used: `SourceApi_GenerateOnlyContracts` is set to `False` and for `SourceApi_GeneratorNamespace` 
+>concatenation of you project name and directory of Open API definitions is used
+
+For global configuration (used for all added Open API files) define these parameters in `<PropertyGroup> section:
+
+```xml
+<PropertyGroup>
+   <TargetFramework>net5.0</TargetFramework>
+   <GenerateDocumentationFile>true</GenerateDocumentationFile>
+   <NoWarn>$(NoWarn);1591</NoWarn>
+   ...
+   <SourceApi_GeneratorNamespace>Compentio.SourceApi.WebExample.Controllers</SourceApi_GeneratorNamespace>
+   <SourceApi_GenerateOnlyContracts>false</SourceApi_GenerateOnlyContracts>
+</PropertyGroup>
+ ```
+
+
+You can also define these parameters per file in `<ItemGroup>`: 
+
+```xml
+<ItemGroup>
+   <AdditionalFiles Include="OpenApi\Pets.yaml"/>
+   <AdditionalFiles Include="OpenApi\Store.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.WebApi"/>
+   <AdditionalFiles Include="OpenApi\Users.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.WebApi" SourceApi_GenerateOnlyContracts = "true"/>
+ </ItemGroup>
+```
+
+Here in a case global configuration exists, for `Pets.yaml` global config is used, for `Store.yaml` namespace is overriden and for `Users.yaml` 
+`SourceApi_GeneratorNamespace` and `SourceApi_GenerateOnlyContracts` are overriden.
 
