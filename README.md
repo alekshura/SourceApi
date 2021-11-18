@@ -24,7 +24,7 @@ where it is possible to be able to transform an external non-C# file into an equ
 
 Rico Suter [NSwag](https://github.com/RicoSuter/NSwag) is used underhood:
 - [CSharpControllerGenerator](https://github.com/RicoSuter/NSwag/wiki/CSharpControllerGenerator) is used for abstract base controllers code generation
-- [CSharpClientGenerator](https://github.com/RicoSuter/NSwag/wiki/CSharpClientGenerator) actually for DTO's only code generation mode. 
+- [CSharpClientGenerator](https://github.com/RicoSuter/NSwag/wiki/CSharpClientGenerator) used for DTO's only code generation mode. 
 
 # Installation
 Install using nuget package manager:
