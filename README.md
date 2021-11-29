@@ -1,5 +1,7 @@
 # <img src="/Compentio.Assets/Logo.png" align="left" width="50"> SourceApi
 
+[![NuGet](http://img.shields.io/nuget/v/Compentio.SourceApi.svg)](https://www.nuget.org/packages/Compentio.SourceApi)
+![Nuget](https://img.shields.io/nuget/dt/Compentio.SourceApi)
 ![GitHub](https://img.shields.io/github/license/alekshura/SourceApi)
 ![GitHub top language](https://img.shields.io/github/languages/top/alekshura/SourceApi)
 
