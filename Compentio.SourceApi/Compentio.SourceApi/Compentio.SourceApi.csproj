@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <IsRoslynComponent>true</IsRoslynComponent>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Description>API first code generator based on json or yaml Open API definitions.</Description>
     <PackageTags>CodeGenerator, OpenApi</PackageTags>
     <Copyright>Copyright (c) @alekshura Compentio 2021</Copyright>
