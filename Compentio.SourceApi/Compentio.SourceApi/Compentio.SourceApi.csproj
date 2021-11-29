@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <IsRoslynComponent>true</IsRoslynComponent>
-    <Version>0.0.19</Version>
+    <Version>1.1.0</Version>
     <Description>API first code generator based on json or yaml Open API definitions.</Description>
     <PackageTags>CodeGenerator, OpenApi</PackageTags>
     <Copyright>Copyright (c) @alekshura Compentio 2021</Copyright>
@@ -16,6 +16,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\Compentio.Assets\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -53,6 +57,8 @@
   
    <PropertyGroup>
       <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+      <PackageIcon>Logo.png</PackageIcon>
+      <PackageIconUrl />
    </PropertyGroup>
   
   <Target Name="GetDependencyTargetPaths">
