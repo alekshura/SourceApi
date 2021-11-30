@@ -234,6 +234,7 @@ You can also define these parameters per file in `<ItemGroup>`:
    <AdditionalFiles Include="OpenApi\Store.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.WebApi"/>
    <AdditionalFiles Include="OpenApi\Users.yaml" SourceApi_GeneratorNamespace="Compentio.SourceApi.WebExample.WebApi" SourceApi_GenerateOnlyContracts = "true"/>
  </ItemGroup>
+ <Import Project="..\Compentio.SourceApi\Generator.props" />
 ```
 
 Here in a case global configuration exists, for `Pets.yaml` global config is used, for `Store.yaml` namespace is overriden and for `Users.yaml` 
