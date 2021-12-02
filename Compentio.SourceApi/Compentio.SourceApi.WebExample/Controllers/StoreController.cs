@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Compentio.SourceApi.WebExample.Controllers
@@ -11,27 +12,31 @@ namespace Compentio.SourceApi.WebExample.Controllers
     public class StoreController : StoreControllerBase
     {
         /// <inheritdoc />
-        public override Task<IActionResult> DeleteOrder([BindRequired] long orderId)
+        public async override Task<IActionResult> DeleteOrder([BindRequired] long orderId)
         {
-            throw new NotImplementedException();
+            // Implement your async code here
+            return Accepted();
         }
 
         /// <inheritdoc />
-        public override Task<ActionResult<IDictionary<string, int>>> GetInventory()
+        public async override Task<ActionResult<IDictionary<string, int>>> GetInventory()
         {
-            throw new NotImplementedException();
+            // Implement your async code here
+            return Ok();
         }
 
         /// <inheritdoc />
-        public override Task<ActionResult<Order>> GetOrderById([BindRequired] long orderId)
+        public async override Task<ActionResult<Order>> GetOrderById([BindRequired] long orderId)
         {
-            throw new NotImplementedException();
+            // Implement your async code here
+            return Accepted();
         }
 
         /// <inheritdoc />
-        public override Task<ActionResult<Order>> PlaceOrder([BindRequired, FromBody] Order body)
+        public async override Task<ActionResult<Order>> PlaceOrder([BindRequired, FromBody] Order body)
         {
-            throw new NotImplementedException();
+            // Implement your async code here
+            return Accepted();
         }
     }
 }
